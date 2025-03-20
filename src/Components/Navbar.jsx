@@ -51,6 +51,7 @@ const Navbar = () => {
         <button
           className="menu-button md:hidden ml-auto pr-5 z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
           {isMenuOpen ? (
             <HiX className="size-6 text-gray-900 dark:text-white" />
@@ -92,34 +93,32 @@ const Navbar = () => {
       )}
 
       {/* Mobile Menu */}
-      <div
-        className={`mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white/95 dark:bg-gray-900/95 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden z-50`}
-      >
-        <div className="flex flex-col items-center py-4">
-          {navLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              onClick={() => {
-                setActiveLink(link.href);
-                setIsMenuOpen(false);
-              }}
-              className={`block text-lg font-semibold py-4 w-full text-center transition-colors ${
-                activeLink === link.href
-                  ? "text-blue-600 bg-gray-100 dark:bg-gray-800"
-                  : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-          <button className="mt-4 bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
-            <a href="#newsletter">Get in Touch</a>
-          </button>
+      {isMenuOpen && (
+        <div className="mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 border-t border-gray-100 py-4 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out md:hidden z-50">
+          <div className="container mx-auto px-4 space-y-3 flex flex-col items-center">
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                onClick={() => {
+                  setActiveLink(link.href);
+                  setIsMenuOpen(false);
+                }}
+                className={`block text-sm font-medium py-2 w-full text-center transition-colors ${
+                  activeLink === link.href
+                    ? "text-blue-600"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <button className="w-full bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
+              <a href="#newsletter">Get in Touch</a>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
