@@ -7,7 +7,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const closeMenuOnOutsideClick = (event) => {
-      if (isMenuOpen && !event.target.closest(".mobile-menu")) {
+      if (
+        isMenuOpen &&
+        !event.target.closest(".mobile-menu") &&
+        !event.target.closest(".menu-button") // Prevent closing when clicking the button
+      ) {
         setIsMenuOpen(false);
       }
     };
@@ -26,19 +30,16 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 bg-white/90 dark:bg-gray-900 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-800 shadow-sm transition-all">
       <div className="w-full container mx-auto flex items-center px-4 sm:px-6 lg:px-8 md:h-20 h-16">
         
-        {/* New Hexagon Logo */}
+        {/* Logo */}
         <div className="flex items-center gap-2 cursor-pointer pl-10">
           <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            {/* Hexagon Shape */}
             <polygon points="50,10 90,35 90,75 50,100 10,75 10,35" fill="url(#grad1)" />
-            {/* Gradient */}
             <defs>
               <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{ stopColor: "#8A2BE2", stopOpacity: 1 }} />
                 <stop offset="100%" style={{ stopColor: "#20B2AA", stopOpacity: 1 }} />
               </linearGradient>
             </defs>
-            {/* M Letter */}
             <text x="50%" y="55%" fontSize="30" fontWeight="bold" fill="white" textAnchor="middle" transform="rotate(-5, 50, 50)">
               M
             </text>
@@ -48,7 +49,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden ml-auto pr-5 z-50"
+          className="menu-button md:hidden ml-auto pr-5 z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -82,11 +83,11 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu (Animated Slide-in) */}
+      {/* Mobile Menu */}
       <div
-        className={`mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 shadow-md transform transition-transform duration-300 ease-in-out ${
+        className={`mobile-menu absolute top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 shadow-md transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden z-40`}
+        } md:hidden z-50`}
       >
         <div className="flex flex-col items-center py-4">
           {navLinks.map((link, index) => (
