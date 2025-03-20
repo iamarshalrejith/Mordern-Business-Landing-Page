@@ -96,32 +96,30 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 border-t border-gray-100 py-6 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out md:hidden z-50 flex flex-col items-center">
           {/* List Container with Background */}
-          <div className="w-full bg-gray-100 dark:bg-gray-800 py-4 rounded-md shadow-md">
-            <div className="flex flex-col items-center space-y-4">
-              {navLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  onClick={() => {
-                    setActiveLink(link.href);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`block text-sm font-medium py-3 w-full text-center transition-colors ${
-                    activeLink === link.href
-                      ? "text-blue-600 bg-gray-200 dark:bg-gray-700"
-                      : "text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
+          <div className="w-full bg-gray-100 dark:bg-gray-800 py-6 rounded-md shadow-md flex flex-col items-center space-y-4">
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                onClick={() => {
+                  setActiveLink(link.href);
+                  setIsMenuOpen(false);
+                }}
+                className={`block text-lg font-medium py-3 w-full text-center transition-colors ${
+                  activeLink === link.href
+                    ? "text-blue-600 bg-gray-200 dark:bg-gray-700"
+                    : "text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
 
-          {/* Get in Touch Button */}
-          <button className="w-3/4 mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
-            <a href="#newsletter">Get in Touch</a>
-          </button>
+            {/* Get in Touch Button (Now inside the list container) */}
+            <button className="w-3/4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-lg font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
+              <a href="#newsletter">Get in Touch</a>
+            </button>
+          </div>
         </div>
       )}
     </nav>
