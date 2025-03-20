@@ -1,4 +1,4 @@
-# Business Website with Dark Mode Support
+# Modern Business Landing Page
 
 A modern, responsive, and dark mode-compatible business website built with React, Tailwind CSS, and Swiper.js. It includes dynamic pricing, feature sections, an animated logo carousel, and smooth UI/UX interactions.
 
