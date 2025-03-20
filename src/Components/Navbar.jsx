@@ -84,18 +84,18 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Background Overlay */}
+      {/* Background Overlay (Blur Effect) */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 backdrop-blur-lg z-40 md:hidden"
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 border-t border-gray-100 py-4 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out md:hidden z-50">
-          <div className="container mx-auto px-4 space-y-3 flex flex-col items-center">
+        <div className="mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 border-t border-gray-100 py-6 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out md:hidden z-50 flex flex-col items-center">
+          <div className="w-full flex flex-col items-center space-y-4">
             {navLinks.map((link, index) => (
               <a
                 key={index}
@@ -104,16 +104,16 @@ const Navbar = () => {
                   setActiveLink(link.href);
                   setIsMenuOpen(false);
                 }}
-                className={`block text-sm font-medium py-2 w-full text-center transition-colors ${
+                className={`block text-sm font-medium py-3 w-full text-center transition-colors ${
                   activeLink === link.href
-                    ? "text-blue-600"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "text-blue-600 bg-gray-100 dark:bg-gray-800"
+                    : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
               >
                 {link.label}
               </a>
             ))}
-            <button className="w-full bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
+            <button className="w-3/4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-100">
               <a href="#newsletter">Get in Touch</a>
             </button>
           </div>
