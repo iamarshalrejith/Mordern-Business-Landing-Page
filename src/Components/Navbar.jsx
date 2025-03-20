@@ -10,7 +10,7 @@ const Navbar = () => {
       if (
         isMenuOpen &&
         !event.target.closest(".mobile-menu") &&
-        !event.target.closest(".menu-button") // Prevent closing when clicking the button
+        !event.target.closest(".menu-button")
       ) {
         setIsMenuOpen(false);
       }
@@ -83,9 +83,17 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Background Overlay */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
+
       {/* Mobile Menu */}
       <div
-        className={`mobile-menu absolute top-0 left-0 w-3/4 h-full bg-white dark:bg-gray-900 shadow-md transform transition-transform duration-300 ease-in-out ${
+        className={`mobile-menu fixed top-0 left-0 w-3/4 h-full bg-white/95 dark:bg-gray-900/95 shadow-lg backdrop-blur-md transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden z-50`}
       >
@@ -98,10 +106,10 @@ const Navbar = () => {
                 setActiveLink(link.href);
                 setIsMenuOpen(false);
               }}
-              className={`block text-sm font-medium py-3 w-full text-center transition-colors ${
+              className={`block text-lg font-semibold py-4 w-full text-center transition-colors ${
                 activeLink === link.href
-                  ? "text-blue-600"
-                  : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  ? "text-blue-600 bg-gray-100 dark:bg-gray-800"
+                  : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
               }`}
             >
               {link.label}
